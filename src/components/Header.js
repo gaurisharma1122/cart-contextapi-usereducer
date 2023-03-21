@@ -28,30 +28,31 @@ const Header = () => {
                 <FaShoppingCart color="white" fontSize="25px" />
                 <Badge bg='success' style={{ fontSize: '18px', backgroundColor: 'transparent' }}>{state.cart.length}</Badge>
               </Dropdown.Toggle>
-              <Dropdown.Menu style={{ minWidth: 300 }} className='cart-dropdown'>
+              <Dropdown.Menu style={{ minWidth: 350 }} className='cart-dropdown px-2'>
                 {
                   state.cart.length ?
-                    <>
+                    < div style={{ maxHeight: 400, overflow: 'auto' }}>
                       {
                         state.cart.map((item) => {
-                          return (<Dropdown.Item key={item.id} className='d-flex align-items-center'>
-                            <img src={item.thumbnail} alt={item.title} style={{ width: 70, height: 70, borderRadius: '50%', margin: '10px 0' }} />
+                          return (<Dropdown.Item key={item.product.id} className='d-flex align-items-center'>
+                            <img src={item.product.thumbnail} alt={item.product.title} style={{ width: 70, height: 70, borderRadius: '50%', margin: '10px 0' }} />
                             <div className="item-info px-5" style={{ width: '80%'}}>
-                              <h5>{item.title}</h5>
-                              <span>$ {item.price}</span>
+                              <h5>{item.product.title}</h5>
+                              <span>$ {item.product.price}</span>
                             </div>
-                            <AiFillDelete style={{ fontSize: '25'}} onClick={()=> removeFromCart(item.id)}/>
+                            <AiFillDelete style={{ fontSize: '25'}} onClick={()=> removeFromCart(item.product.id)}/>
                           </Dropdown.Item>)
                         })
                       }
-                      <Button variant='success' className='go-to-cart-btn' style={{ width: "95%", margin: "10px 10px" }}>
-                        <Link to='/cart'>Go To Cart</Link>
-                      </Button>
-                    </> :
+                      
+                    </div> :
                     <p className='text-center mt-2'>No Items yet in your cart</p>
                 }
-
+                <Button variant='success' className='go-to-cart-btn mt-2' style={{ width: "100%" }}>
+                        <Link to='/cart'>Go To Cart</Link>
+                </Button>
               </Dropdown.Menu>
+              
             </Dropdown>
           </Nav>
 

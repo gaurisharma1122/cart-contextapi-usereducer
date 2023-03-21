@@ -20,7 +20,7 @@
   left: 0;
 }
 .cart-dropdown{
-  transform: translateX(-60%);
+  transform: translateX(-80%);
 }
 .go-to-cart-btn a, .go-to-cart-btn a:hover{
   color: #fff;

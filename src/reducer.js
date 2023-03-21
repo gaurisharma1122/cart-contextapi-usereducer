@@ -18,9 +18,14 @@ export const reducer= (state, action)=>{
             break;
         case 'REMOVE_FROM_CART':
             {
-                let newCart= state.cart.filter((item)=> item.id != action.payload);
+                let newCart= state.cart.filter((item)=> item.product.id != action.payload);
                 return { ...state, cart: newCart };
             }
             break;
+       /* case 'CHANGE_QTY':
+            {
+                let newItem= state.cart.filter((c) => c.id === action.payload.id ? (c.quantity = action.payload.value) : c.quantity)
+                return { ...state, cart: [...state.cart, newItem ] };
+            }*/
     }
 };

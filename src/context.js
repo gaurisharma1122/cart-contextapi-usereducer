@@ -6,7 +6,8 @@ export const AppContext= createContext();
  const initialState= {
     loading: true,
     products: [],
-    cart: []
+    cart: [],
+    total:0
  };
  
 
@@ -24,11 +25,15 @@ const AppProvider= ({ children })=>{
      };
 
     const addToCart= (product)=>{
-        dispatch({ type: 'ADD_TO_CART', payload: product });
+        dispatch({ type: 'ADD_TO_CART', payload: { product, quantity:1 } });
     }
 
     const removeFromCart= (id)=>{
         dispatch({ type: 'REMOVE_FROM_CART', payload: id});
+    }
+
+    const changeQty= (id, value)=>{
+        dispatch({ type: 'CHANGE_QTY', payload: {id, value} })
     }
 
     useEffect(()=>{
@@ -36,7 +41,7 @@ const AppProvider= ({ children })=>{
     }, []);    
     
     return(
-        <AppContext.Provider value={{ state, dispatch, addToCart, removeFromCart }}>
+        <AppContext.Provider value={{ state, dispatch, addToCart, removeFromCart, changeQty }}>
             { children }
         </AppContext.Provider>
     );

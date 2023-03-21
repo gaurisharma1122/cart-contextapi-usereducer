@@ -19,7 +19,7 @@ const Product = ({ id, title, description, price, rating, thumbnail, product }) 
                 <Card.Text> <Rating rating={ Math.floor(rating) }/> </Card.Text>
                 
                 {
-                  state.cart.includes(product)?
+                  state.cart.some((item)=> item.product === product)?
                   <Button variant="danger" onClick={()=> removeFromCart(id)}>Remove from Cart</Button>:
                   <Button variant="primary" onClick={()=> addToCart(product)}>Add to Cart</Button>
                 }
